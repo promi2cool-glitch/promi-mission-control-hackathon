@@ -54,10 +54,10 @@ Each objective: a one-line outcome statement, then 2–4 measurable key results.
 **Why now:** The hackathon story depends on judges being able to *see* the mission run, not just read a result.
 
 **Key results:**
-- KR1: Live XO activity/timeline data is surfaced during a demo run.
-- KR2: The demo walkthrough shows dispatch → execution → evidence → verification as a visible sequence.
+- KR1: Live XO activity/timeline data is surfaced during a demo run. ⚠️ partial
+- KR2: The demo walkthrough shows dispatch → execution → evidence → verification as a visible sequence. ✅
 
-**Status:** not started
+**Status:** in progress — 2026-09-20. The Mission Control UI's pipeline visualization and observability panel (session ID, runtime, action/command counts, duration) satisfy KR2 and render from real captured evidence today. KR1 is partial: the UI polls and displays live state transitions during a live run, but does not yet stream XO's own timeline/activity feed in real time — full KR1 demonstration is deferred to the recorded video's one live run (`demo/VIDEO_SCRIPT.md`), where XO Space itself is shown directly alongside Mission Control per Quirq's judging requirement.
 
 ---
 

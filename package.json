@@ -13,7 +13,9 @@
     "test:verifier": "npm run build && node --test \"tests/verifier/**/*.test.js\"",
     "verify": "node scripts/verify.mjs",
     "mission:demo": "npm run build && node dist/cli/missionDemo.js",
-    "verify:mission": "npm run build && node dist/cli/verifyMission.js"
+    "verify:mission": "npm run build && node dist/cli/verifyMission.js",
+    "test:api": "npm run build && node --test \"tests/api/**/*.test.js\"",
+    "demo": "npm run build && node dist/cli/demo.js"
   },
   "devDependencies": {
     "typescript": "^5.6.0",

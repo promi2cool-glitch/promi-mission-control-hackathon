@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Promi Mission Control</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <h1>PROMI MISSION CONTROL</h1>
+    <p class="subtitle">Autonomous work you can actually verify.</p>
+  </div>
+  <div class="status-strip" id="statusStrip">
+    <div class="status-pill" data-key="promi"><span class="dot"></span><span class="label">PROMI</span><span class="value">…</span></div>
+    <div class="status-pill" data-key="xo"><span class="dot"></span><span class="label">XO</span><span class="value">…</span></div>
+    <div class="status-pill" data-key="worker"><span class="dot"></span><span class="label">WORKER</span><span class="value">…</span></div>
+    <div class="status-pill" data-key="verifier"><span class="dot"></span><span class="label">VERIFIER</span><span class="value">…</span></div>
+  </div>
+</header>
+
+<main>
+
+  <section class="panel mission-card" id="missionCard">
+    <div class="panel-title">MISSION <span id="missionNumber">#001</span></div>
+    <div class="mission-grid">
+      <div>
+        <h3>Project</h3>
+        <p id="missionProject">—</p>
+        <h3>Goal</h3>
+        <p id="missionGoal">—</p>
+      </div>
+      <div class="permissions-grid">
+        <div>
+          <h4>Granted</h4>
+          <ul id="permissionsGranted" class="perm-list granted"></ul>
+        </div>
+        <div>
+          <h4>Denied</h4>
+          <ul id="permissionsDenied" class="perm-list denied"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel controls">
+    <button id="replayBtn" class="btn btn-primary">Replay Verified Mission</button>
+    <button id="liveRunBtn" class="btn btn-secondary">Run New Live Mission</button>
+    <p class="controls-hint">Replay renders the real captured run from stored evidence — no new agent call. Live run launches a real autonomous XO worker.</p>
+  </section>
+
+  <section class="panel pipeline-panel">
+    <div class="panel-title">Mission Lifecycle</div>
+    <ol class="pipeline" id="pipeline">
+      <li class="stage" data-stage="promi"><span class="stage-num">1</span><span class="stage-title">PROMI</span><span class="stage-sub">Mission Created</span></li>
+      <li class="stage" data-stage="xo"><span class="stage-num">2</span><span class="stage-title">XO</span><span class="stage-sub">Worker Dispatched</span></li>
+      <li class="stage" data-stage="worker"><span class="stage-num">3</span><span class="stage-title">CLAUDE CODE</span><span class="stage-sub">Autonomous Execution</span></li>
+      <li class="stage" data-stage="evidence"><span class="stage-num">4</span><span class="stage-title">EVIDENCE</span><span class="stage-sub">Tests + File Changes</span></li>
+      <li class="stage" data-stage="verifier"><span class="stage-num">5</span><span class="stage-title">PROMI VERIFIER</span><span class="stage-sub">Independently Checked</span></li>
+      <li class="stage" data-stage="result"><span class="stage-num">6</span><span class="stage-title">RESULT</span><span class="stage-sub" id="pipelineResult">—</span></li>
+    </ol>
+    <p class="replay-banner" id="replayBanner" hidden></p>
+  </section>
+
+  <section class="panel execution-panel" id="executionPanel">
+    <div class="panel-title">Execution Evidence</div>
+    <div class="evidence-grid">
+      <div><span class="ev-label">XO Worker</span><span class="ev-value" id="evWorker">—</span></div>
+      <div><span class="ev-label">Session</span><span class="ev-value mono" id="evSession">—</span></div>
+      <div><span class="ev-label">Actions</span><span class="ev-value" id="evActions">—</span></div>
+      <div><span class="ev-label">Commands</span><span class="ev-value" id="evMessages">—</span></div>
+      <div><span class="ev-label">Changed</span><span class="ev-value mono" id="evChanged">—</span></div>
+      <div><span class="ev-label">Worker claim</span><span class="ev-value" id="evClaim">—</span></div>
+      <div><span class="ev-label">Before</span><span class="ev-value" id="evBefore">—</span></div>
+      <div><span class="ev-label">After</span><span class="ev-value" id="evAfter">—</span></div>
+    </div>
+  </section>
+
+  <section class="panel verification-hero" id="verificationPanel">
+    <div class="panel-title">PROMI INDEPENDENT VERIFICATION</div>
+    <p class="checks-summary" id="checksSummary">— / — checks passed</p>
+    <ul class="checks-list" id="checksList"></ul>
+    <div class="verdict-row">
+      <span class="verdict-label">VERDICT</span>
+      <span class="verdict-badge" id="verdictBadge">—</span>
+    </div>
+  </section>
+
+  <section class="panel explanation">
+    <p>&ldquo;Worker completion is not verification.&rdquo;</p>
+    <p>&ldquo;Promi independently evaluates measured evidence before accepting autonomous work.&rdquo;</p>
+  </section>
+
+  <section class="panel observability-panel" id="observabilityPanel">
+    <div class="panel-title">XO Observability</div>
+    <div class="evidence-grid">
+      <div><span class="ev-label">Session ID</span><span class="ev-value mono" id="obsSession">—</span></div>
+      <div><span class="ev-label">Runtime</span><span class="ev-value" id="obsRuntime">—</span></div>
+      <div><span class="ev-label">Actions observed</span><span class="ev-value" id="obsActions">—</span></div>
+      <div><span class="ev-label">Duration</span><span class="ev-value" id="obsDuration">—</span></div>
+      <div><span class="ev-label">Started</span><span class="ev-value" id="obsStarted">—</span></div>
+      <div><span class="ev-label">Finished</span><span class="ev-value" id="obsFinished">—</span></div>
+      <div><span class="ev-label">Usage telemetry</span><span class="ev-value" id="obsUsage">—</span></div>
+    </div>
+    <a id="openXoLink" class="btn btn-ghost" href="#" target="_blank" rel="noopener" hidden>Open XO Space</a>
+  </section>
+
+  <section class="panel bad-case-section">
+    <div class="panel-title">Why Verification Matters</div>
+    <p class="bad-case-label">Deterministic verifier test cases — not additional live agent executions.</p>
+    <div class="bad-case-grid">
+      <div class="bad-case">
+        <p class="bc-claim">Worker says: <strong>COMPLETED</strong></p>
+        <p class="bc-detail">But tests: 15 PASS / 1 FAIL</p>
+        <p class="bc-verdict fail">Promi: FAIL</p>
+      </div>
+      <div class="bad-case">
+        <p class="bc-claim">Unauthorized file:</p>
+        <p class="bc-detail mono">../private.txt</p>
+        <p class="bc-verdict fail">Promi: FAIL</p>
+      </div>
+      <div class="bad-case">
+        <p class="bc-claim">Forbidden action:</p>
+        <p class="bc-detail mono">vercel deploy --prod</p>
+        <p class="bc-detail">Mission deploy permission: DENIED</p>
+        <p class="bc-verdict fail">Promi: FAIL</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Promi Mission Control — a new subsystem being added to Promi for bounded, observable, independently-verified autonomous work. <a href="https://github.com/promi2cool-glitch/promi-mission-control-hackathon" target="_blank" rel="noopener">Source on GitHub</a></p>
+</footer>
+
+<div class="modal-backdrop hidden" id="confirmModal">
+  <div class="modal">
+    <p>This launches a real autonomous worker in XO. Continue?</p>
+    <div class="modal-actions">
+      <button id="confirmCancel" class="btn btn-ghost">Cancel</button>
+      <button id="confirmProceed" class="btn btn-primary">Launch Live Mission</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
