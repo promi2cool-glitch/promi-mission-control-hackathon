@@ -1,7 +1,7 @@
 {
   "$schema": "xo/todos.schema.json",
   "schema": 2,
-  "updated_at": "2026-09-20T15:41:23Z",
+  "updated_at": "2026-09-20T16:05:04Z",
   "sessions": {
     "_project": {
       "runtime": "claude_code",
@@ -33,22 +33,77 @@
         {
           "id": "6c59c668",
           "content": "Init git, create public GitHub repo, connect origin",
-          "status": "in_progress",
+          "status": "completed",
           "description": null,
           "active_form": null,
           "created_at": "2026-09-20T15:39:39Z",
-          "updated_at": "2026-09-20T15:41:23Z",
+          "updated_at": "2026-09-20T15:43:00Z",
           "deleted_at": null,
           "deleted_by": null
         },
         {
           "id": "55d03a94",
           "content": "Secret scan, initial commit, push, verify",
-          "status": "pending",
+          "status": "completed",
           "description": null,
           "active_form": null,
           "created_at": "2026-09-20T15:39:39Z",
-          "updated_at": "2026-09-20T15:39:39Z",
+          "updated_at": "2026-09-20T15:43:00Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "2e0bd076",
+          "content": "Implement mission contract (types/schema/validate/result) under src/mission",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T15:49:48Z",
+          "updated_at": "2026-09-20T16:01:00Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "46a56c3b",
+          "content": "Build sanitized demo_project with one intentional rounding defect",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T15:49:48Z",
+          "updated_at": "2026-09-20T16:02:26Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "200b2f4e",
+          "content": "Write mission-layer tests + demo tests, wire package.json scripts",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T15:49:48Z",
+          "updated_at": "2026-09-20T16:04:01Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "e8350090",
+          "content": "Write sample missions (valid + forbidden-action guardrail)",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T15:49:48Z",
+          "updated_at": "2026-09-20T16:05:04Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "9716189d",
+          "content": "Update PLAN/PROGRESS/OBJECTIVES docs, security scan, commit, push",
+          "status": "in_progress",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T15:49:48Z",
+          "updated_at": "2026-09-20T16:05:04Z",
           "deleted_at": null,
           "deleted_by": null
         }

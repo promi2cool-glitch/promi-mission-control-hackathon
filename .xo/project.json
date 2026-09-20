@@ -7,7 +7,7 @@
   "display_name": "Promi Mission Control",
   "description": "Verification-first orchestration layer that lets Promi dispatch bounded autonomous missions to agents running in Quirq/XO, observe the actual work, and independently verify the result.",
   "git": {
-    "remote_url": null,
+    "remote_url": "https://github.com/promi2cool-glitch/promi-mission-control-hackathon.git",
     "default_branch": "main"
   }
 }

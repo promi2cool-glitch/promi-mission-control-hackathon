@@ -10,7 +10,7 @@
 
 ## Current plan
 
-**As of:** 2026-09-20
+**As of:** 2026-09-20 (phases 1–3 complete)
 **Driving objective:** O1 (execute one complete real autonomous mission inside XO)
 
 ### Strategy
@@ -19,26 +19,27 @@ Build the minimum reliable vertical slice before anything else: bootstrap the pr
 
 ### Steps
 
-1. **Bootstrap** — canonical XO project scaffold, git repo, public GitHub repo, clean initial commit. *(this session)*
-2. **Mission schema** — define the structured mission contract Promi sends to the XO adapter.
-3. **Sanitized demo project** — a small, self-contained project (in `demo_project/`) the worker can be safely dispatched against.
-4. **XO adapter** (`src/xo/`) — dispatch missions to XO Space's HTTP/SSE API, read back worker activity.
-5. **Worker execution** — trigger a real Claude Code worker run inside XO against the demo project.
-6. **Structured result** (`src/mission/`) — define and populate the result contract (files touched, commands run, test output, diffs).
-7. **Verifier** (`src/verifier/`) — independently check the result against mission success criteria; emit PASS/FAIL/PARTIAL/BLOCKED.
+1. **Bootstrap** — ✅ done. Canonical XO project scaffold, git repo, public GitHub repo, clean initial commit.
+2. **Mission schema** — ✅ done. `src/mission/{types,schema,validate,result}.ts`: typed `Mission`, deny-by-default `MissionPermissions`, `MissionState` transition table, structured validation returning `ValidationError[]` (never throwing), `MissionResult` and `VerificationResult` with structural parsers. 20/20 mission-layer tests pass (`npm run test:mission`).
+3. **Sanitized demo project** — ✅ done. `demo_project/`: an order discount engine with one intentional defect (GOLD-tier discount rounded per-line instead of once on the subtotal). 16 tests, 15 pass / 1 expected fail, verified by actually running `node --test` (not asserted). `demo_project/BUG.md` describes only observable behavior, not the root cause. `npm run verify` builds, runs core tests, and checks the demo baseline is exactly 1 failure (fails loudly if the defect is accidentally fixed early, or if it's broken beyond the intended failure).
+4. **XO adapter** (`src/xo/`) — dispatch missions to XO Space's HTTP/SSE API, read back worker activity. *(next)*
+5. **Worker execution** — trigger a real Claude Code worker run inside XO against the demo project, using `demo/sample-mission.json`.
+6. **Structured result** — populate a real `MissionResult` from an actual worker run (files touched, commands run, test output, diffs).
+7. **Verifier** (`src/verifier/`) — independently check the result against mission success criteria; emit PASS/FAIL/PARTIAL/BLOCKED. Worker `worker_claim` is never treated as a substitute for this.
 8. **Promi bridge** (`src/api/`) — the boundary Promi calls to dispatch a mission and receive the verified result.
 9. **Observability** — surface XO timeline/activity data usable in a live demo.
 10. **Demo/submission** — end-to-end walkthrough script and Devpost-safe materials.
 
+`demo/sample-mission.json` and `demo/sample-forbidden-mission.json` (a guardrail mission whose goal text asks for a deploy step while `permissions.deploy` stays `false`) are both schema-validated by `tests/sample-missions.test.js` — real validation, not just hand-written JSON assumed correct.
+
 ### Open questions
 
-- Exact shape of the mission schema (what fields Promi needs vs. what XO needs) — to resolve in phase 2.
-- Exact XO API surface for dispatching a worker run vs. just observing an existing session — needs discovery once phase 4 starts.
+- Exact XO API surface for dispatching a *new* worker run vs. just observing an existing session — needs discovery once phase 4 starts.
 
 ### Risks / unknowns
 
 - XO's dispatch API for triggering a *new* worker run (vs. observing the current session) hasn't been confirmed yet — may need discovery work in phase 4.
-- Verifier criteria need to be concrete enough to actually fail a bad result, or O3 is unproven.
+- Verifier criteria (phase 7) need to be concrete enough to actually fail a bad result, or O3 is unproven. Phases 2–3 only built the contracts and the fixture the verifier will eventually be tested against.
 
 ---
 

@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc -p .",
-    "test": "node --test"
+    "test": "npm run test:mission",
+    "test:mission": "npm run build && node --test \"tests/**/*.test.js\"",
+    "test:demo": "node --test \"demo_project/test/**/*.test.js\"",
+    "verify": "node scripts/verify.mjs"
   },
   "devDependencies": {
     "typescript": "^5.6.0",
