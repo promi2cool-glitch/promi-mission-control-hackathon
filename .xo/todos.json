@@ -1,7 +1,7 @@
 {
   "$schema": "xo/todos.schema.json",
   "schema": 2,
-  "updated_at": "2026-09-20T16:40:29Z",
+  "updated_at": "2026-09-20T17:03:48Z",
   "sessions": {
     "_project": {
       "runtime": "claude_code",
@@ -148,6 +148,61 @@
           "active_form": null,
           "created_at": "2026-09-20T16:40:29Z",
           "updated_at": "2026-09-20T16:40:29Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "3358c297",
+          "content": "Implement verifier path/permission/test-count check primitives (files.ts, permissions.ts, tests.ts, definitionOfDone.ts)",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T16:51:23Z",
+          "updated_at": "2026-09-20T16:56:07Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "9a5cc6d7",
+          "content": "Implement verify.ts orchestrator + report.ts, wire verify:mission CLI",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T16:51:23Z",
+          "updated_at": "2026-09-20T16:57:23Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "805d0b8a",
+          "content": "Write verifier unit tests incl. 6 bad-case fixtures proving FAIL/PARTIAL/BLOCKED",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T16:51:23Z",
+          "updated_at": "2026-09-20T17:00:02Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "59192795",
+          "content": "Run real verification against mis_demo_bugfix_001, generate verification.json + HTML report",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T16:51:23Z",
+          "updated_at": "2026-09-20T17:00:33Z",
+          "deleted_at": null,
+          "deleted_by": null
+        },
+        {
+          "id": "f34efcf9",
+          "content": "Update docs (O2/O3), security scan, commit, push",
+          "status": "completed",
+          "description": null,
+          "active_form": null,
+          "created_at": "2026-09-20T16:51:23Z",
+          "updated_at": "2026-09-20T17:03:48Z",
           "deleted_at": null,
           "deleted_by": null
         }

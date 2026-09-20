@@ -10,8 +10,10 @@
     "test:mission": "npm run build && node --test \"tests/**/*.test.js\"",
     "test:demo": "node --test \"demo_project/test/**/*.test.js\"",
     "test:xo": "npm run build && node --test \"tests/xo/**/*.test.js\"",
+    "test:verifier": "npm run build && node --test \"tests/verifier/**/*.test.js\"",
     "verify": "node scripts/verify.mjs",
-    "mission:demo": "npm run build && node dist/cli/missionDemo.js"
+    "mission:demo": "npm run build && node dist/cli/missionDemo.js",
+    "verify:mission": "npm run build && node dist/cli/verifyMission.js"
   },
   "devDependencies": {
     "typescript": "^5.6.0",

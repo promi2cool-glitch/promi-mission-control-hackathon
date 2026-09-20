@@ -6,6 +6,7 @@
 // defect exists.
 
 import { execFileSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
 
 const EXPECTED_DEMO_FAILURES = 1;
 
@@ -70,6 +71,33 @@ if (demoCounts.fail > EXPECTED_DEMO_FAILURES) {
 }
 console.log(`DEMO BASELINE: PASS (${demoCounts.pass} pass, ${demoCounts.fail} expected fail)\n`);
 
+console.log("== verify: real mission sandbox + independent verification (if a mission has been dispatched) ==");
+const DEMO_MISSION_ID = "mis_demo_bugfix_001";
+const resultPath = `.mission-runs/${DEMO_MISSION_ID}/result.json`;
+let verificationLine = "VERIFICATION: (no mission dispatched yet)";
+let sandboxLine = "REAL MISSION SANDBOX: (no mission dispatched yet)";
+
+if (existsSync(resultPath)) {
+  const missionResult = JSON.parse(readFileSync(resultPath, "utf8"));
+  sandboxLine = `REAL MISSION SANDBOX: ${missionResult.tests.after.passed} pass / ${missionResult.tests.after.failed} fail`;
+  console.log(sandboxLine);
+
+  const verifyRun = run("node", ["dist/cli/verifyMission.js", DEMO_MISSION_ID]);
+  console.log(verifyRun.output.trim());
+  const verdictMatch = /VERDICT\s*\n\s*\n\s*(\w+)/.exec(verifyRun.output);
+  const verdict = verdictMatch ? verdictMatch[1] : "UNKNOWN";
+  verificationLine = `VERIFICATION: ${verdict}`;
+  if (verdict !== "PASS") {
+    console.error(`\nVERIFY: FAIL — independent verification of ${DEMO_MISSION_ID} did not return PASS (got ${verdict}).`);
+    process.exit(1);
+  }
+} else {
+  console.log("(no dispatched mission found under .mission-runs/ — skipping)");
+}
+console.log();
+
 console.log("VERIFY: PASS");
-console.log(`  core tests:    ${missionCounts.pass}/${missionCounts.pass} pass`);
-console.log(`  demo baseline: ${demoCounts.pass} pass, ${demoCounts.fail} expected fail (intentional defect)`);
+console.log(`  core system:          ${missionCounts.pass}/${missionCounts.pass} pass`);
+console.log(`  canonical demo:       ${demoCounts.pass} pass, ${demoCounts.fail} expected fail (intentional defect)`);
+console.log(`  ${sandboxLine}`);
+console.log(`  ${verificationLine}`);
