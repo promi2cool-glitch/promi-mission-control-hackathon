@@ -15,11 +15,11 @@ Each objective: a one-line outcome statement, then 2–4 measurable key results.
 **Why now:** The whole thesis of Promi Mission Control depends on proving a mission can actually run end-to-end inside XO against real files/tools, not a mock.
 
 **Key results:**
-- KR1: A structured mission (mission schema) is dispatched to XO Space via its API and accepted.
-- KR2: A Claude Code worker inside XO executes real file/tool/test work against the sanitized demo project.
-- KR3: The mission run is observable end-to-end via XO's timeline/activity endpoints.
+- KR1: A structured mission (mission schema) is dispatched to XO Space via its API and accepted. ✅
+- KR2: A Claude Code worker inside XO executes real file/tool/test work against the sanitized demo project. ✅
+- KR3: The mission run is observable end-to-end via XO's timeline/activity endpoints. ✅
 
-**Status:** not started
+**Status:** achieved — 2026-09-20. `demo/sample-mission.json` was dispatched for real via `npm run mission:demo` against the running XO Space (session `7d8303e2-b890-4ce7-ac77-f6c7a8066f15`, distinct from this controlling session). The worker independently diagnosed the intentional GOLD-tier rounding defect (never told the root cause), made a minimal fix, and ran the tests itself: the disposable sandbox went from 15 pass/1 fail to 16 pass/0 fail, while the canonical `demo_project/` stayed untouched at 15 pass/1 fail throughout. Observable via `GET /api/sessions/{id}` and `GET /api/messages/{id}` (12 real messages, 10 tool calls). This is one successful run, not a reliability guarantee — see PLAN.md phase 4/5 notes.
 
 ---
 

@@ -5,3 +5,8 @@ dist/
 .env.*
 memory/working/*
 !memory/working/.gitkeep
+
+# Disposable per-mission bookkeeping (baseline/after counts, snapshots,
+# result.json, SSE logs). The executable code copy a worker touches lives
+# outside the repo entirely, under xo-projects root — see src/xo/workspace.ts.
+.mission-runs/
