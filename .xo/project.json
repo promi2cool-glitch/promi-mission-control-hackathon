@@ -1,0 +1,13 @@
+{
+  "schema": 2,
+  "pid": "2272a81f-2da4-465e-9db3-a85a98271b42",
+  "name": "promi-mission-control-hackathon",
+  "owner_user_id": "promi2cool",
+  "created_at": "2026-09-20T15:38:52Z",
+  "display_name": "Promi Mission Control",
+  "description": "Verification-first orchestration layer that lets Promi dispatch bounded autonomous missions to agents running in Quirq/XO, observe the actual work, and independently verify the result.",
+  "git": {
+    "remote_url": null,
+    "default_branch": "main"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "promi-mission-control-hackathon",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Verification-first orchestration layer for dispatching bounded autonomous missions to Quirq/XO and independently verifying results.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}
